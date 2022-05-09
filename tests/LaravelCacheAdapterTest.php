@@ -12,12 +12,12 @@ class LaravelCacheAdapterTest extends TestCase
     protected $manager;
     protected $repository;
 
-    public function tearDown()
+    public function tearDown() :void
     {
         m::close();
     }
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->manager = m::mock('Illuminate\Cache\CacheManager');
         $this->manager->shouldReceive('store')
@@ -34,6 +34,12 @@ class LaravelCacheAdapterTest extends TestCase
         $this->assertEquals('testValue', $adapter->get('key'));
     }
 
+    /**
+     * testRemoveWithoutPrefix
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
     public function testRemoveWithoutPrefix()
     {
         $this->repository->shouldReceive('forget')->with('aws_credentials_key_to_remove')->once();
@@ -42,6 +48,12 @@ class LaravelCacheAdapterTest extends TestCase
         $adapter->remove('key_to_remove');
     }
 
+    /**
+     * testSetLessThan60SecondsRoundsUp
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
     public function testSetLessThan60SecondsRoundsUp()
     {
         $this->repository->shouldReceive('put')->with('aws_credentials_key', 'value', 1)->once();
@@ -50,6 +62,12 @@ class LaravelCacheAdapterTest extends TestCase
         $adapter->set('key', 'value', 59);
     }
 
+    /**
+     * testSetGreaterThan60SecondsRoundsDown
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
     public function testSetGreaterThan60SecondsRoundsDown()
     {
         $this->repository->shouldReceive('put')->with('aws_credentials_key', 'value', 1)->once();
@@ -58,6 +76,12 @@ class LaravelCacheAdapterTest extends TestCase
         $adapter->set('key', 'value', 61);
     }
 
+    /**
+     * testSetGreaterThan120SecondsRoundsDown
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
     public function testSetGreaterThan120SecondsRoundsDown()
     {
         $this->repository->shouldReceive('put')->with('aws_credentials_key', 'value', 2)->once();
@@ -66,6 +90,12 @@ class LaravelCacheAdapterTest extends TestCase
         $adapter->set('key', 'value', 121);
     }
 
+    /**
+     * testSet0Retains0
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
     public function testSet0Retains0()
     {
         $this->repository->shouldReceive('put')->with('aws_credentials_key', 'value', 0)->once();
