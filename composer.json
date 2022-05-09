@@ -1,5 +1,5 @@
 {
-    "name": "lukewaite/laravel-aws-cache-adapter",
+    "name": "kaihei777/laravel-aws-cache-adapter",
     "description": "Laravel Cache Adapter for AWS Credential Caching. Allows you to reduce calls to the ec2 metadata api.",
     "keywords": [
         "laravel",
