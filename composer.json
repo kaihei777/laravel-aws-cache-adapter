@@ -15,16 +15,17 @@
         }
     },
     "require": {
-        "aws/aws-sdk-php": "^3.20",
         "illuminate/support": "^8.0",
-        "composer/composer": "^2.1"
+        "composer/composer": "^2.1",
+        "mockery/mockery": "^1.5",
+        "aws/aws-sdk-php": "^3.222",
+        "symfony/mailer": "^6.0"
     },
     "require-dev": {
-        "mockery/mockery": "^0.9.6",
         "laravel/framework": "^8.12",
-        "phpunit/phpunit": "^9.3.3",
-        "squizlabs/php_codesniffer": "^2.8",
-        "scrutinizer/ocular": "^1.3"
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "scrutinizer/ocular": "^1.9"
     },
     "scripts": {
         "cs": "phpcs --standard=psr2 src/",
